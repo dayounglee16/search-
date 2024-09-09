@@ -12,15 +12,15 @@ function App() {
   const [searchListCopy, setSearchListCopy] = useState(searchList);
   const [searchInput, setSearchInput] = useState("");
 
-  //searchInput이 비어있을 땐 전체리스트 보이게 하기
-  //searchInput에 입력한 내용이 item이랑 겹칠 때 겹치는 요소만 보이게하기
-
   useEffect(() => {
     if (searchInput === "") {
       setSearchListCopy(searchList);
     } else {
+      const lowerCaseInput = searchInput.toLowerCase();
       setSearchListCopy(
-        searchList.filter((filteredItem) => filteredItem.includes(searchInput))
+        searchList.filter((filteredItem) =>
+          filteredItem.toLowerCase().includes(lowerCaseInput)
+        )
       );
     }
   }, [searchInput]);
